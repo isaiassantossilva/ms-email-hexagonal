@@ -1,4 +1,4 @@
-package com.santos.email.application.entities.enums;
+package com.santos.email.application.domain.enums;
 
 public enum StatusEmail {
     PROCESSING,

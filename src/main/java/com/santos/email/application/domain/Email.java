@@ -1,6 +1,6 @@
-package com.santos.email.application.entities;
+package com.santos.email.application.domain;
 
-import com.santos.email.application.entities.enums.StatusEmail;
+import com.santos.email.application.domain.enums.StatusEmail;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class EmailModel {
+public class Email {
 
     private UUID emailId;
     private String ownerRef;

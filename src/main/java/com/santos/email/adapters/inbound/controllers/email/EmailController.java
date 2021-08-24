@@ -1,8 +1,8 @@
 package com.santos.email.adapters.inbound.controllers.email;
 
 import com.santos.email.adapters.inbound.controllers.email.dto.EmailDto;
-import com.santos.email.application.entities.EmailModel;
-import com.santos.email.application.ports.EmailService;
+import com.santos.email.application.domain.Email;
+import com.santos.email.application.ports.EmailServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -16,20 +16,20 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class EmailController {
 
-    private final EmailService emailService;
+    private final EmailServicePort emailServicePort;
 
     @PostMapping("/send")
     @ResponseStatus(HttpStatus.CREATED)
-    public EmailModel sendEmail(@RequestBody EmailDto emailDto){
-        EmailModel emailModel = new EmailModel();
-        BeanUtils.copyProperties(emailDto, emailModel);
-        return emailService.sendEmail(emailModel);
+    public Email sendEmail(@RequestBody EmailDto emailDto){
+        Email email = new Email();
+        BeanUtils.copyProperties(emailDto, email);
+        return emailServicePort.sendEmail(email);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmailModel> findEmailById(@PathVariable String id){
-        var email = emailService.findById(UUID.fromString(id));
+    public ResponseEntity<Email> findEmailById(@PathVariable String id){
+        var email = emailServicePort.findById(UUID.fromString(id));
 
         return email.map(emailModel -> ResponseEntity.ok().body(emailModel))
                 .orElseGet(() -> ResponseEntity.notFound().build());
