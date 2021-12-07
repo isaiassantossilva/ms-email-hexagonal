@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MsEmailHexagonalApplication {
 
     public static void main(String[] args) {
+        System.out.println("HERE");
         SpringApplication.run(MsEmailHexagonalApplication.class, args);
     }
 
